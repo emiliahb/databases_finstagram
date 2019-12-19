@@ -1,0 +1,40 @@
+<html>
+<head>
+</head>
+<body>
+
+
+Manage Tags
+<br>
+
+<form action="/tagAcceptOrDecline" method="POST">
+
+
+{% for line in tagData %}
+<input type="radio" name="photoID" value={{line.photoID}}>{{line.photoID}}</input>
+	<br>
+{% endfor %}
+	<input type="submit" name = 'tagButton' value = "accept" />
+	<input type="submit" name = 'tagButton' value = "decline" />
+</form>
+
+
+<form action="/followAcceptOrDecline" method = "POST">
+	Manage Followers<br>
+	{% for line in requestData %}
+	<input type="radio" name="followerName" value={{line.followerUsername}}>{{line.followerUsername}}</input>
+		<br>
+	{% endfor %}
+		<input type="submit" name = 'followButton' value = "accept" />
+		<input type="submit" name = 'followButton' value = "decline" />
+</form>
+
+
+<a href="/home"> Home </a>
+<br>
+<a href="/logout">Log out</a>
+
+</body>
+
+
+</html>

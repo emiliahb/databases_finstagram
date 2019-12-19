@@ -4,7 +4,11 @@
 <body>
 <form action="/post" method="POST">
 	<h1>Welcome {{username}}</h1> 
-	<input type="text" name = "blog" placeholder="post" required/> </br>
+	<input type="text" name="filepath" placeholder="link" required/> </br>
+	<textarea name="caption" placeholder="caption" required/></textarea></br>
+	Visible to all?
+	<input type="checkbox" id="checkbox"></br>
+
 	<input type="submit" value = Post />
 </form>
 
@@ -18,13 +22,34 @@ Here are your posts:
 
 <table>
 	<th>Time</th>
-	<th>Post</th>
+	<th>photoPoster</th>
+	<th>PhotoID</th>
+	<th>Caption</th>
+	<th>Photo Path</th>
+	<th>Photo</th>
+	<th>allFollowers</th>
+	<th>Tagged People </th>
 
 {% for line in posts %}
 	<tr>
-		<td>{{line.ts}}</td>
-		<td>{{line.blog_post}}</td>
-	</tr>
+			<td>{{line.timestamp}}</td>
+			<td>{{line.photoOwner}}</td>
+			<td>{{line.photoID}}</td>
+			<td>{{line.caption}}</td>
+			<td>{{line.filePath}}</td>
+			<td><img src="/image/{{line.filePath}}" width="300"/></td>
+			<td>{{line.allFollowers}}</td>
+			<td>
+				{% for line2 in tagPosts %}
+				{% if line2.photoID == line.photoID %}
+					{{line2.fname}} {{line2.lname}}
+					<br></br>
+				{% endif %}
+				{% endfor %}
+
+			</td>
+
+		</tr>
 {% endfor %}
 </table>
 
